@@ -27,6 +27,7 @@ class RegistrationController extends Controller
         Config::$isProduction = config('midtrans.is_production'); // Ubah ke true untuk produksi
         Config::$isSanitized = true;
         Config::$is3ds = true;
+        Config::$overrideNotifUrl = config('app.url').'/api/midtrans-callback';
 
         $order_id = $order->id;
 
@@ -65,7 +66,7 @@ class RegistrationController extends Controller
          $hashed = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
          if ( $hashed == $request->signature_key)
          {
-            if($request->transaction_status == 'settlement' or $request->transaction_status == 'capture'){
+            if(($request->transaction_status == 'capture' && $request->payment_type == 'credit-card' && $request->fraud_status == 'accept') or $request->transaction_status == 'settlement'){
                 $order = Registration::find($request->order_id);
                 $order->update(['payment_status' => 'Paid']);
             } 
