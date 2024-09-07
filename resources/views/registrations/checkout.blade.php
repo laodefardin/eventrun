@@ -4,10 +4,9 @@
 
 @section('content')
 
-    {{-- <script type="text/javascript" src="https://app.stg.midtrans.com/snap/snap.js"
-        data-client-key="{{ config('midtrans.client_key') }}"></script> --}}
-
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
+        {{-- https://app.sandbox.midtrans.com/snap/snap.js --}}
+        {{-- https://app.stg.midtrans.com/snap/snap.js --}}
+    <script src="{{ config('midtrans.snap_url') }}" data-client-key="{{ config('midtrans.client_key') }}">
     </script>
 
     <div class="p-5 my-5 text-white bg-primary">
