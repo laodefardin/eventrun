@@ -59,7 +59,7 @@
                                     <td>
                                         <strong>#{{ $d->id }}</strong><br>
                                     </td>
-                                    <td>{{ $d->registration_date }}</td>
+                                    <td>{{ date("F j, Y", strtotime($d->registration_date)) }}</td>
                                     <td>{{ $d->name }}</td>
                                     <td>{{ $d->participant_name }}</td>
                                     <td>
@@ -67,7 +67,7 @@
                                         {{ $d->email }} <br>
                                         <i class="align-middle" data-lucide="phone"></i> {{ $d->phone_number }}
                                     </td>
-                                    <td>{{ $d->total_price }}</td>
+                                    <td>Rp. {{ number_format($d->total_price, 0, ',', '.') }},-</td>
                                     <td>
                                         @if($d->payment_status == 'Paid')
                                             <span class="badge badge-subtle-success">Paid</span>

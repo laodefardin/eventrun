@@ -29,7 +29,17 @@ class EventsController extends Controller
 
     public function adminindex()
     {
-        return view('admin.events.index');
+        $query = Events::query();
+        $query->select('events.*');
+        $query->orderBy('date');
+        $events = $query->get();
+
+        return view('admin.events.index', compact('events'));
+    }
+
+    public function store(Request $request)
+    {
+        
     }
     
 }

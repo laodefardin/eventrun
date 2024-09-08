@@ -35,4 +35,5 @@ Route::middleware(['auth:user'])->group(function () {
 
       // Menu Events
       Route::get('/event', [EventsController::class, 'adminindex']);
+      Route::post('/event/store', [EventsController::class, 'store']);
 });
