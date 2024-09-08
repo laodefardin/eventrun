@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('nobleui/vendors/flag-icon-css/css/flag-icon.min.css') }} ">
     <link rel="stylesheet" href="{{ asset('nobleui/css/demo_1/style.css') }} ">
     <link rel="shortcut icon" href="{{ asset('nobleui/images/favicon.png') }} " />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <style>
     .auth-page {
@@ -55,17 +56,31 @@
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Username Administrator</label>
                                                 <input type="text" class="form-control" name="username"
-                                                    id="username" placeholder="Username">
+                                                    id="username" placeholder="Username" value="{{ old('username') }}">
+                                                @if ($errors->has('username'))
+                                                    <span class="text-danger">{{ $errors->first('username') }}</span>
+                                                @endif
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Password</label>
+                                                <input type="password" class="form-control" name="password"
+                                                    id="password" autocomplete="current-password"
+                                                    placeholder="Password">
+                                                @if ($errors->has('password'))
+                                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                @endif
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="exampleInputPassword1">Google rechaptcha</label>
-                                                <input type="password" class="form-control" name="password" id="password"
-                                                    autocomplete="current-password" placeholder="Password">
+                                                {{-- <label for="exampleInputPassword1">Google rechaptcha</label> --}}
+                                                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}">
+                                                </div>
+                                                @if ($errors->has('g-recaptcha-response'))
+                                                    <span
+                                                        class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                                                @endif
                                             </div>
+
 
                                             <div class="mt-3">
                                                 <button type="submit" class="btn btn-primary w-100">Masuk</button>

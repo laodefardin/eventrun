@@ -29,7 +29,12 @@ class Registration extends Model
 
         static::creating(function ($registration) {
             // Membuat custom ID berdasarkan format tanggal, waktu, dan tahun
-            $registration->id = now()->format('dmYHis') . Str::random(2);
+            $today = now()->format('Ymd');
+            $latestRegistration = Registration::where('id', 'like', "$today%")->latest()->first();
+            $nextNumber = $latestRegistration ? intval(substr($latestRegistration->id, -4)) + 1 : 1;
+            $registration->id = $today . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+
+            // $registration->id = now()->format('dmY') . Str::random(2);
         });
     }
 
