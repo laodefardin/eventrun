@@ -51,7 +51,17 @@
                                         <td>{{ $d->location }}</td>
                                         <td>{{ $d->topik }}</td>
                                         <td>Rp. {{ number_format($d->price, 0, ',', '.') }},-</td>
-                                        <td></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="#" class="edit btn btn-sm btn-primary"
+                                                    id="{{ $d->id }}"> <i data-lucide="edit"></i></a>
+                                                <form action="/event/{{ $d->id }}/delete" method="POST">
+                                                    @csrf
+                                                    <a class="btn btn-sm btn-danger delete-confirm"><i
+                                                            data-lucide="trash"></i></a>
+                                                </form>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -75,7 +85,7 @@
                 </div>
 
                 <div class="modal-body m-3">
-                    <form action="/event/store" method="POST" id="frmEvent">
+                    <form action="/event/store" method="POST" id="frmEvent" enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
                             <div class="row">
@@ -90,13 +100,13 @@
                                     </div>
                                     <div class="mb-3">
                                         <label>Topic</label>
-                                        <input type="text" class="form-control" id="topic" name="topic">
+                                        <input type="text" class="form-control" id="topik" name="topik">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="mb-3">
                                         <label>Date Event</label>
-                                        <input type="text" class="form-control" id="date" name="date">
+                                        <input type="date" class="form-control" id="date" name="date">
                                     </div>
                                     <div class="mb-3">
                                         <label>Location</label>
@@ -110,7 +120,7 @@
                                 <div class="col-12">
                                     <div class="mb-3">
                                         <label>Description</label>
-                                        <textarea name="description" class="form-control" id="" cols="10" rows="3"></textarea>
+                                        <textarea name="description" class="form-control" id="description" cols="10" rows="3"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">File input</label>
@@ -119,17 +129,31 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
+                </form>
+
             </div>
         </div>
     </div>
     <!-- END primary modal -->
 
+    {{-- modal edit --}}
+    <div class="modal fade" id="modal-btnEditevent" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Data Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body m-3" id="loadeditform">
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -141,26 +165,79 @@
             });
 
             $('#frmEvent').submit(function() {
-                var 
+                var event_name = $('#event_name').val();
+                var category = $('#category').val();
+                var topik = $('#topik').val();
+                var date_event = $('#date').val();
+                var location = $('#location').val();
+                var price = $('#price').val();
+                var description = $('#description').val();
             })
+        });
+
+        $('.edit').click(function() {
+            var id = $(this).attr('id');
+            $.ajax({
+                type: 'POST',
+                url: '/event/edit',
+                cache: false,
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    id: id,
+                },
+                success: function(respond) {
+                    $("#loadeditform").html(respond);
+                }
+            });
+            $('#modal-btnEditevent').modal('show');
+        });
+
+        $('.delete-confirm').click(function(e) {
+            var form = $(this).closest('form');
+            e.preventDefault();
+            Swal.fire({
+                title: 'Apakah Anda Yakin?',
+                text: "Ingin Menghapus Data Ini!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#e06666",
+                cencelButtonColor: "#d33",
+                confirmButtonText: "Ya, Hapus"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Data Berhasil Dihapus.",
+                        icon: "success",
+                        showConfirmButton: true,
+                    });
+                }
+            });
         });
 
         document.addEventListener('DOMContentLoaded', function() {
             const priceInput = document.getElementById('price');
 
+            // Fungsi untuk memformat angka menjadi format ribuan dengan titik
+            function formatPrice(value) {
+                // Hapus semua karakter non-digit kecuali koma
+                value = value.replace(/[^0-9]/g, '');
+                return new Intl.NumberFormat('id-ID').format(value);
+            }
+
+            // Pasang listener saat input diubah
             priceInput.addEventListener('input', function(e) {
                 let value = e.target.value;
+                e.target.value = formatPrice(value);
+            });
 
-                // Hapus karakter non-digit
-                value = value.replace(/[^,\d]/g, "");
-
-                // Format angka menjadi format ribuan
-                if (value) {
-                    value = parseInt(value.replace(/[^,\d]/g, '')).toLocaleString('id-ID');
+            // Untuk memastikan format benar saat modal edit event dibuka
+            $('#modal-btnEditevent').on('shown.bs.modal', function() {
+                // Format angka pada nilai awal jika sudah ada nilai di dalam input
+                if (priceInput.value) {
+                    priceInput.value = formatPrice(priceInput.value);
                 }
-
-                // Set value kembali ke input field
-                e.target.value = value;
             });
         });
 
@@ -168,9 +245,9 @@
             $("#datatables-orders").DataTable({
                 destroy: true,
                 responsive: true,
-                order: [
-                    [1, "asc"]
-                ],
+                // order: [
+                //     [1, "asc"]
+                // ],
                 pageLength: 10,
                 columnDefs: [{
                         targets: 0,

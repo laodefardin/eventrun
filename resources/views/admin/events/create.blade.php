@@ -54,36 +54,4 @@
     </div>
 @endsection
 
-@push('myscript')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            $("#datatables-orders").DataTable({
-                destroy: true,
-                responsive: true,
-                order: [
-                    [1, "asc"]
-                ],
-                pageLength: 10,
-                columnDefs: [{
-                        targets: 0,
-                        orderable: false,
-                        width: "18px"
-                    },
-                    {
-                        targets: 7,
-                        orderable: false
-                    }
-                ],
-                layout: {
-                    topStart: null,
-                    topEnd: null,
-                    bottomStart: 'info',
-                    bottomEnd: 'paging'
-                }
-            });
-            $("#datatables-orders-search").keyup(function() {
-                $("#datatables-orders").DataTable().search($(this).val()).draw();
-            });
-        });
-    </script>
-@endpush
+
