@@ -12,6 +12,14 @@ use Illuminate\Support\Str;
 
 class EventsController extends Controller
 {
+
+    public function dashboard()
+    {
+        // $events = Events::all();
+        $events = Events::orderBy('date', 'desc')->paginate(6);
+        return view('dashboard', compact('events'));
+    }
+
     public function home()
     {
         // $events = Events::all();
@@ -30,6 +38,13 @@ class EventsController extends Controller
         // cari event berdasarkan slug
         $event = Events::where('slug', $slug)->firstOrFail();
         return view('events.show', compact('event'));
+    }
+
+    public function eventshow($slug)
+    {
+        // cari event berdasarkan slug
+        $event = Events::where('slug', $slug)->firstOrFail();
+        return view('events.eventshow', compact('event'));
     }
 
     public function adminindex()
@@ -157,5 +172,6 @@ class EventsController extends Controller
     } catch (\Exception $e) {
         return Redirect::back()->with(['warning' => 'Data Gagal DiUpdate']);
     }
-    }
+}
+
 }

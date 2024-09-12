@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::get('/', [EventsController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/', [EventsController::class, 'home'])->name('home');
+Route::get('/home', [EventsController::class, 'home'])->name('home');
 Route::get('/events', [EventsController::class, 'index'])->name('events.index');
-Route::get('/events/{slug}', [EventsController::class, 'show'])->name('events.show');
+Route::get('/join/{slug}', [EventsController::class, 'show'])->name('events.show');
+Route::get('/eventshow/{slug}', [EventsController::class, 'eventshow'])->name('events.eventshow');
 
 // Route::post('/registrations/checkout-prosess/{slug}/{eventId}', [RegistrationController::class, 'store'])->name('registrations.store');
 Route::post('/registrations/checkout-process/{eventId}', [RegistrationController::class, 'store'])->name('registrations.store');

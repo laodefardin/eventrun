@@ -9,6 +9,23 @@
                 <h1 class="h3 mb-3">@yield('title')</h1>
                 <div class="card">
                     <div class="card-body">
+                        @if (Session::get('success'))
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <div class="alert-message">
+                                <strong>{{ Session::get('success') }}</strong>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (Session::get('warning'))
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <div class="alert-message">
+                                <strong> {{ Session::get('warning') }}</strong> x
+                            </div>
+                        </div>
+                    @endif
                         <div class="row mb-3">
                             <div class="col-md-6 col-xl-4 mb-2 mb-md-0">
                                 <div class="input-group input-group-search">
@@ -172,7 +189,79 @@
                 var location = $('#location').val();
                 var price = $('#price').val();
                 var description = $('#description').val();
-            })
+
+                if (event_name === "") {
+                    Swal.fire({
+                        title: 'Warning!',
+                        text: 'Event Name harus Diisi !!',
+                        icon: 'warning',
+                        confirmationButtonText: 'Ok',
+                    }).then((result) => {
+                        $('#event_name').focus();
+                    });
+                    return false;
+                } else if (category === "") {
+                    Swal.fire({
+                        title: 'Warning!',
+                        text: 'Category harus Diisi !!',
+                        icon: 'warning',
+                        confirmationButtonText: 'Ok',
+                    }).then((result) => {
+                        $('#category').focus();
+                    });
+                    return false;
+                } else if (topik === "") {
+                    Swal.fire({
+                        title: 'Warning!',
+                        text: 'Topik harus Diisi !!',
+                        icon: 'warning',
+                        confirmationButtonText: 'Ok',
+                    }).then((result) => {
+                        $('#topik').focus();
+                    });
+                    return false;
+                } else if (date_event === "") {
+                    Swal.fire({
+                        title: 'Warning!',
+                        text: 'Date Evemt harus Diisi !!',
+                        icon: 'warning',
+                        confirmationButtonText: 'Ok',
+                    }).then((result) => {
+                        $('#date').focus();
+                    });
+                    return false;
+                } else if (location === "") {
+                    Swal.fire({
+                        title: 'Warning!',
+                        text: 'Location harus Diisi !!',
+                        icon: 'warning',
+                        confirmationButtonText: 'Ok',
+                    }).then((result) => {
+                        $('#location').focus();
+                    });
+                    return false;
+                } else if (price === "") {
+                    Swal.fire({
+                        title: 'Warning!',
+                        text: 'Price harus Diisi !!',
+                        icon: 'warning',
+                        confirmationButtonText: 'Ok',
+                    }).then((result) => {
+                        $('#price').focus();
+                    });
+                    return false;
+                } else if (description === "") {
+                    Swal.fire({
+                        title: 'Warning!',
+                        text: 'Description harus Diisi !!',
+                        icon: 'warning',
+                        confirmationButtonText: 'Ok',
+                    }).then((result) => {
+                        $('#description').focus();
+                    });
+                    return false;
+                }
+            });
         });
 
         $('.edit').click(function() {
