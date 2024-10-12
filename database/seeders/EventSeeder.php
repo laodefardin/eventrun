@@ -24,7 +24,7 @@ class EventSeeder extends Seeder
                 'categori' => '5K',
                 'topik' => 'Fitness and Fun',
                 'price' => 150000,
-                'img' => 'https://getbootstrap.com/docs/5.3/examples/features/unsplash-photo-1.jpg',
+                'img' => 'unsplash-photo-1.jpg',
             ],
             [
                 'name' => 'Marathon Challenge',
@@ -35,7 +35,7 @@ class EventSeeder extends Seeder
                 'categori' => 'Marathon',
                 'topik' => 'Endurance and Speed',
                 'price' => 300000,
-                'img' => 'https://getbootstrap.com/docs/5.3/examples/features/unsplash-photo-2.jpg',
+                'img' => 'unsplash-photo-2.jpg',
             ],
             [
                 'name' => 'Kids Fun Run',
@@ -46,7 +46,7 @@ class EventSeeder extends Seeder
                 'categori' => 'Kids',
                 'topik' => 'Fun and Games',
                 'price' => 100000,
-                'img' => 'https://getbootstrap.com/docs/5.3/examples/features/unsplash-photo-3.jpg',
+                'img' => 'unsplash-photo-3.jpg',
             ],
         ]);
     }

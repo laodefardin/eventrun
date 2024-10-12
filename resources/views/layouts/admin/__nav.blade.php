@@ -24,7 +24,7 @@
                     <div class="dropdown-divider"></div>
                     <a class='dropdown-item' href='/pages-settings'>Settings & Privacy</a>
                     <a class="dropdown-item" href="#">Help</a>
-                    <a class="dropdown-item" href="#">Sign out</a>
+                    <a class="dropdown-item" href="/proseslogoutadmin">Sign out</a>
                 </div>
             </li>
         </ul>

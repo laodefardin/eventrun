@@ -71,8 +71,7 @@
             <div class="row justify-content-center">
                 <div class="navis col bg-blue position-relative">
                     <div class="ps-4 position-absolute top-0 start-0">
-                        <a href="https://activindonesiarace.id/"><img src="{{ asset('assets/img/run white.png') }}"
-                                class=""
+                        <a href=""><img src="{{ asset('assets/img/run white.png') }}" class=""
                                 style="
                                 width: 100px;
                             "></a>
@@ -112,7 +111,15 @@
                             <div class="px-3 pb-3">
                                 <ul class="navbar-nav">
                                     <li class="nav-item"><button class="btn btn-link nav-link" data-bs-toggle="modal"
-                                            data-bs-target="#modalTnCMenu">Rules and Regulations</button></li>
+                                            data-bs-target="#modalAboutInformation">About Information</button></li>
+                                </ul>
+                                <ul class="navbar-nav">
+                                    <li class="nav-item"><button class="btn btn-link nav-link" data-bs-toggle="modal"
+                                            data-bs-target="#modalRaceInformation">Race Information</button></li>
+                                </ul>
+                                <ul class="navbar-nav">
+                                    <li class="nav-item"><button class="btn btn-link nav-link" data-bs-toggle="modal"
+                                            data-bs-target="#modalRoleInformation">Rules and Regulations</button></li>
                                 </ul>
                             </div>
                         </div>
@@ -150,17 +157,88 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalTnCMenu" tabindex="-1" aria-labelledby="modalTnCMenuLabel" aria-hidden="true">
+    <div class="modal fade" id="modalAboutInformation" tabindex="-1" aria-labelledby="modalAboutInformationLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTnCMenuLabel">Syarat &amp; Ketentuan / Terms &amp; Conditions
+                    <h5 class="modal-title" id="modalAboutInformationLabel">About Information
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h5 class="modal-title mb-3 text-uppercase text-center">Road To Race 2024
-                        ("PROGRAM")</h5>
+                    <p>Lari adalah kegiatan olahraga yang tidak hanya menyehatkan dan memperkuat daya tahan tubuh
+                        tetapi juga membuka ruang pergaulan yang lebih luas, sehingga makin banyak teman. Dalam satu
+                        dekade terakhir ini, berbagai lomba lari dan aktivitas lari marak bertumbuhan di Indonesia.
+                        Minat masyarakat terhadap olahgara meningkat pesat, termasuk olahraga lari jalan raya, terbukti
+                        dengan semakin banyaknya terbentuk komunitas-komunitas lari diberbagai daerah. <br>
+
+                        <p></p>Salah satu komunitas yang terbentuk dan aktif melakukan kegiatan lari di Kabupaten Bone adalah
+                        Medan Runner. Medan Runner merupakan salah satu wadah yang mempunyai hobi dan
+                        kecintaan terhadap olahraga lari. <br>
+
+                        <p></p>Sebagai wujud dan kecintaan terhadap olahraga lari, komunitas Medan Runner memiliki ide
+                        untuk melaksanakan suatu kegiatan yaitu TENRIAWARU FUN RUN 2024. Kegiatan ini terbuka secara
+                        umum untuk diikuti para pelari dalam dan luar negeri. <br>
+
+                        <p></p>Diharapkan melalui kegiatan ini semangat dan gaya hidup sehat bugar dapat terus digaungkan,
+                        kegiatan ini pula dimaksudkan sebagai salah satu upaya untuk lebih memperkenalkan potensi
+                        Kabupaten Bone secara umum. Selain itu kegiatan ini dimaksudkan untuk mempererat hubungan
+                        personal dan sosial untuk para penggiat lari. <br>
+
+                        <p></p>Runners akan diajak untuk menikmati kota Bone yang ramah melalui kegiatan ini. Rute lari
+                        disiapkan khusus sehingga runners dapat berlari dengan aman dan nyaman melewati jalur dengan
+                        para penyelenggara yang berdikasi melayani.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalRaceInformation" tabindex="-1" aria-labelledby="modalTnCMenuLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTnCMenuLabel">Race Information
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-title mb-3 text-uppercase text-center">Road To Race Medan Series</h5>
+                    <table class="table table-striped w-100 text-center">
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Instagram</th>
+                        </tr>
+                        <tr>
+                            <td>23 Desember 2024</td>
+                            <td>06:00 WITA</td>
+                            <td>Lapangan Merdeka, Kab. Mamuju, Sulawesi Barat</td>
+                            <td>@racerunmedan</td>
+                        </tr>
+                    </table>
+                    <p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d820.2956444302006!2d118.89032692840206!3d-2.677658632254298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d92d84cccaa78e7%3A0xf9715a3336fbbbec!2sLapangan%20Ahmad%20Kirang!5e0!3m2!1sid!2sid!4v1728739570964!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalRoleInformation" tabindex="-1" aria-labelledby="modalRoleInformation"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalRoleInformation">Rules and Regulations
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-title mb-3 text-uppercase text-center">Rules and Regulations</h5>
+
                 </div>
             </div>
         </div>
@@ -179,7 +257,8 @@
 
                 <div class="position-absolute w-100 start-50 translate-middle-x text-center" style="top:7rem">
                     <img src="{{ asset('assets/img/pngwing.com (1).png') }}" style="width: 350px"><br>
-                    <h3 class="text-white"><strong>Road To Indonesia Race</strong></h3>
+                    <h3 class="text-white"><strong>Road To Indonesia Race Medan Series</strong></h3>
+                    <h5 class="text-white">15 Desember 2024</h5>
 
                     {{-- gambar road to race --}}
                     {{-- <img src="https://activindonesiarace.id/img/roadToMAIR.png" class="road2MAIR"> --}}
@@ -190,6 +269,7 @@
                             style="padding: 10px 70px;border-radius: 9rem;">Join Race</a>
                     </div>
                 </div>
+
                 {{-- logo kanan --}}
                 {{-- <img src="https://activindonesiarace.id/img/50thn.png" alt="50 tahun" class="position-absolute"
                     style="width:160px;top:5rem;right:2rem"> --}}
@@ -233,6 +313,8 @@
             </div>
         </section>
     </main>
+
+
     <script type="text/javascript" src="{{ asset('appstack/js/jquery.countdown.js') }}"></script>
     <script type="text/javascript">
         var race = new Date("Sep 15, 2024 06:00:00");
